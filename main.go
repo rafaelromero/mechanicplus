@@ -3,38 +3,67 @@ package main
 import (
 	"fmt"
 	"os"
+	"context"
+	"fmt"
+	"log"
 
-	tea "github.com/charmbracelet/bubbletea"
+	"github.com/tmc/langchaingo/llms"
+  	"github.com/tmc/langchaingo/llms/openai"
 )
 
-type model struct {
-	// Add fields to hold the state of your application.
-}
 
-type msg struct {
-	// Add fields to represent the different types of messages your application can handle.
-}
+//your cool!
 
-func (m model) Init() tea.Cmd {
-	// Initialize your application and return any commands you want to run.
-	return nil
-}
+const OpenAIKey = ""
+const BedrockKey = ""
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	// Handle the different types of messages and return the updated model and any commands you want to run.
 	fmt.Println("hello"
 	return m, nil
 }
+const GPT4Turbo = "gpt4-turbo"
+const Titan = "Titan-1"
 
-func (m model) View() string {
-	// Return a string representation of your model.
-	return ""
-}
 
 func main() {
-	p := tea.NewProgram(model{})
-	if err := p.Start(); err != nil {
-		// Handle any errors that occurred and exit.
-		os.Exit(1)
-	}
+
+	prompt := "What would be a good company name for a company that makes colorful socks?"
+
+	completion := GenerateWithOpenAI(prompt, GPT4Turbo)
+	
+	fmt.Println(completion)
+
+}
+
+
+
+func GenerateWithBedrock(prompt string, model string) string {
+	var input string
+	return input
+}
+
+func GenerateWithOpenAI(prompt string, model string) string {	
+	
+	ctx := context.Background()
+  	llm, err := openai.New()
+
+  	if err != nil {
+    		log.Fatal(err)
+  	}
+  	
+  	
+	completion, err := llms.GenerateFromSinglePrompt(ctx, llm, prompt)
+  	
+	if err != nil {
+    		log.Fatal(err)
+  	}
+  	
+
+	return completion
+
+}
+
+func GetMechanicLogs(){
+
 }
