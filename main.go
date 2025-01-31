@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -21,6 +22,7 @@ func (m model) Init() tea.Cmd {
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	// Handle the different types of messages and return the updated model and any commands you want to run.
+	fmt.Println("hello"
 	return m, nil
 }
 
